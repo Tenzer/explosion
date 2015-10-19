@@ -25,6 +25,9 @@ and you will get an `explosion` executable. There is currently no flags for the 
 
 ## Change log
 
+### 1.0.1 - 2015-10-19
+* Use "lower half block" instead of "upper half block" for the sub-character resolution. This removes the artifacts from the upper half block not covering the top row of pixels with iTerm on OS X.
+
 ### 1.0.0 - 2015-10-19
 * Initial release
 
