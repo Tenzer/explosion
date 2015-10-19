@@ -34,3 +34,4 @@ and you will get an `explosion` executable. There is currently no flags for the 
 * Detect the terminal window size and use that as the base of the image output size.
 * Allow override of the output image size and resize interpolation function through flags.
 * Attempt to implement maato's solution with the higher image resolution, by making use of the extra characters available.
+* Possibly add support for 256 color output, for terminals which only support that (with a flag).
