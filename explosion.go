@@ -24,7 +24,7 @@ func PrintImage(img image.Image) {
 		for x := bounds.Min.X; x < bounds.Max.X; x++ {
 			upper_red, upper_green, upper_blue, _ := resized.At(x, y).RGBA()
 			lower_red, lower_green, lower_blue, _ := resized.At(x, y+1).RGBA()
-			fmt.Printf("\x1b[38;2;%d;%d;%dm\x1b[48;2;%d;%d;%dm▀", upper_red, upper_green, upper_blue, lower_red, lower_green, lower_blue)
+			fmt.Printf("\x1b[48;2;%d;%d;%dm\x1b[38;2;%d;%d;%dm▄", upper_red, upper_green, upper_blue, lower_red, lower_green, lower_blue)
 		}
 		fmt.Println("\x1b[0m")
 	}
