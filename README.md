@@ -39,3 +39,4 @@ and you will get an `explosion` executable. There is currently no flags for the 
 * Attempt to implement maato's solution with the higher image resolution, by making use of the extra characters available.
 * Possibly add support for 256 color output, for terminals which only support that (with a flag).
 * Find out if goroutines makes sense performance wise, ie. per image or per set of rows in the image?
+* Add support for reading from standard input.
