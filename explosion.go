@@ -24,15 +24,26 @@ func PrintImage(img image.Image) {
 		for x := bounds.Min.X; x < bounds.Max.X; x++ {
 			upper_red, upper_green, upper_blue, _ := resized.At(x, y).RGBA()
 			lower_red, lower_green, lower_blue, _ := resized.At(x, y+1).RGBA()
-			fmt.Printf(
-				"\x1b[48;2;%d;%d;%dm\x1b[38;2;%d;%d;%dm▄",
-				upper_red/256,
-				upper_green/256,
-				upper_blue/256,
-				lower_red/256,
-				lower_green/256,
-				lower_blue/256,
-			)
+
+			// Only print the background if upper and lower row are same color
+			if upper_red == lower_red && upper_green == lower_green && upper_blue == lower_blue {
+				fmt.Printf(
+					"\x1b[48;2;%d;%d;%dm ",
+					upper_red/256,
+					upper_green/256,
+					upper_blue/256,
+				)
+			} else {
+				fmt.Printf(
+					"\x1b[48;2;%d;%d;%dm\x1b[38;2;%d;%d;%dm▄",
+					upper_red/256,
+					upper_green/256,
+					upper_blue/256,
+					lower_red/256,
+					lower_green/256,
+					lower_blue/256,
+				)
+			}
 		}
 		fmt.Println("\x1b[0m")
 	}
