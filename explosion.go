@@ -16,8 +16,13 @@ import (
 	_ "golang.org/x/image/tiff"
 )
 
+var (
+	height uint
+	width  uint
+)
+
 func PrintImage(img image.Image) {
-	resized := resize.Thumbnail(80, 80, img, resize.NearestNeighbor)
+	resized := resize.Thumbnail(width, height, img, resize.NearestNeighbor)
 	bounds := resized.Bounds()
 
 	for y := bounds.Min.Y; y < bounds.Max.Y; y += 2 {
@@ -50,6 +55,8 @@ func PrintImage(img image.Image) {
 }
 
 func main() {
+	flag.UintVar(&height, "h", 80, "Maximum height of output in number of lines")
+	flag.UintVar(&width, "w", 80, "Maximum width of output in number of columns")
 	flag.Parse()
 	filenames := flag.Args()
 
