@@ -41,6 +41,13 @@ and you will get an `explosion` executable. There is currently no flags for the 
 
 ## Change log
 
+### 1.1.0 - 2015-10-21
+* Fix bug where the outputted RGB values was on a scale from 0-65535 instead of 0-255 which doesn't work everywhere.
+* Attempt to decrease output amount if the two colors within the same character is identical.
+* Add support for reading from standard input when specifying "-" as the filename.
+* Add command line options `-h` and `-w` to overrule the size of the printed image.
+* Automatically determine image default output size based upon terminal size.
+
 ### 1.0.1 - 2015-10-19
 * Use "lower half block" instead of "upper half block" for the sub-character resolution. This removes the artifacts from the upper half block not covering the top row of pixels with iTerm on OS X.
 
