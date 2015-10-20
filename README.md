@@ -36,7 +36,7 @@ If you have [Go](https://golang.org/) installed, then you should simply run:
 go get github.com/Tenzer/explosion
 ```
 
-and you will get an `explosion` executable. There is currently no flags for the program, it just takes a list of images and prints them out in the same order. If no filenames are provided it will read from standard input.
+and you will get an `explosion` executable. There is currently no flags for the program, it just takes a list of images and prints them out in the same order. `-` can be provided to read from standard input.
 
 
 ## Change log
