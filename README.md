@@ -20,7 +20,7 @@ If you have [Go](https://golang.org/) installed, then you should simply run:
 go get github.com/Tenzer/explosion
 ```
 
-and you will get an `explosion` executable. There is currently no flags for the program, it just takes a list of images and prints them out in the same order.
+and you will get an `explosion` executable. There is currently no flags for the program, it just takes a list of images and prints them out in the same order. If no filenames are provided it will read from standard input.
 
 
 ## Change log
@@ -39,4 +39,3 @@ and you will get an `explosion` executable. There is currently no flags for the 
 * Attempt to implement maato's solution with the higher image resolution, by making use of the extra characters available.
 * Possibly add support for 256 color output, for terminals which only support that (with a flag).
 * Find out if goroutines makes sense performance wise, ie. per image or per set of rows in the image?
-* Add support for reading from standard input.

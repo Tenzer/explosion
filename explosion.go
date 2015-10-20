@@ -53,6 +53,18 @@ func main() {
 	flag.Parse()
 	filenames := flag.Args()
 
+	if len(filenames) == 0 {
+		fmt.Println("stdin:")
+		source_image, _, err := image.Decode(os.Stdin)
+		if err != nil {
+			fmt.Println("Error:", err)
+			os.Exit(1)
+		}
+
+		PrintImage(source_image)
+		os.Exit(0)
+	}
+
 	for i, filename := range filenames {
 		if i > 0 {
 			fmt.Println()
