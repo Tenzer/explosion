@@ -15,9 +15,9 @@ Usage: explosion [options] [file ...]
 
 Options:
   -h uint
-        Maximum height of output in number of lines (default 80)
+        Maximum height of output in number of lines (default 110)
   -w uint
-        Maximum width of output in number of columns (default 80)
+        Maximum width of output in number of columns (default 204)
 ```
 
 
@@ -50,7 +50,6 @@ and you will get an `explosion` executable. There is currently no flags for the 
 
 ## To do
 
-* Detect the terminal window size and use that as the base of the image output size.
 * Attempt to implement maato's solution with the higher image resolution, by making use of the extra characters available.
 * Possibly add support for 256 color output, for terminals which only support that (with a flag).
 * Find out if goroutines makes sense performance wise, ie. per image or per set of rows in the image?

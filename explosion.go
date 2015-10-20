@@ -6,6 +6,7 @@ import (
 	"image"
 	"os"
 
+	"github.com/kr/pty"
 	"github.com/nfnt/resize"
 
 	_ "image/gif"
@@ -55,8 +56,11 @@ func PrintImage(img image.Image) {
 }
 
 func main() {
-	flag.UintVar(&height, "h", 80, "Maximum height of output in number of lines")
-	flag.UintVar(&width, "w", 80, "Maximum width of output in number of columns")
+	height_int, width_int, _ := pty.Getsize(os.Stdout)
+
+	// The three subtracted lines is to have room for command, file name and prompt after explosion
+	flag.UintVar(&height, "h", uint((height_int-3)*2), "Maximum height of output in number of half lines")
+	flag.UintVar(&width, "w", uint(width_int), "Maximum width of output in number of columns")
 	flag.Parse()
 	flag.Usage = func() {
 		fmt.Fprintf(os.Stderr, "Usage: %s [options] [file ...]\n\n", os.Args[0])
