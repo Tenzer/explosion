@@ -17,12 +17,7 @@ import (
 	_ "golang.org/x/image/tiff"
 )
 
-var (
-	height uint
-	width  uint
-)
-
-func PrintImage(img image.Image) {
+func PrintImage(img image.Image, width uint, height uint) {
 	resized := resize.Thumbnail(width, height, img, resize.NearestNeighbor)
 	bounds := resized.Bounds()
 
@@ -58,9 +53,12 @@ func PrintImage(img image.Image) {
 func main() {
 	height_int, width_int, _ := pty.Getsize(os.Stdout)
 
+	var width uint
+	var height uint
+
 	// The three subtracted lines is to have room for command, file name and prompt after explosion
-	flag.UintVar(&height, "h", uint((height_int-3)*2), "Maximum height of output in number of half lines")
 	flag.UintVar(&width, "w", uint(width_int), "Maximum width of output in number of columns")
+	flag.UintVar(&height, "h", uint((height_int-3)*2), "Maximum height of output in number of half lines")
 	flag.Parse()
 	flag.Usage = func() {
 		fmt.Fprintf(os.Stderr, "Usage: %s [options] [file ...]\n\n", os.Args[0])
@@ -102,6 +100,6 @@ func main() {
 			continue
 		}
 
-		PrintImage(source_image)
+		PrintImage(source_image, width, height)
 	}
 }
