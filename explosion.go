@@ -23,26 +23,26 @@ func PrintImage(img image.Image, width uint, height uint) {
 
 	for y := bounds.Min.Y; y < bounds.Max.Y; y += 2 {
 		for x := bounds.Min.X; x < bounds.Max.X; x++ {
-			upper_red, upper_green, upper_blue, _ := resized.At(x, y).RGBA()
-			lower_red, lower_green, lower_blue, _ := resized.At(x, y+1).RGBA()
+			upperRed, upperGreen, upperBlue, _ := resized.At(x, y).RGBA()
+			lowerRed, lowerGreen, lowerBlue, _ := resized.At(x, y+1).RGBA()
 
 			// Only print the background if upper and lower row are same color
-			if upper_red == lower_red && upper_green == lower_green && upper_blue == lower_blue {
+			if upperRed == lowerRed && upperGreen == lowerGreen && upperBlue == lowerBlue {
 				fmt.Printf(
 					"\x1b[48;2;%d;%d;%dm ",
-					upper_red/256,
-					upper_green/256,
-					upper_blue/256,
+					upperRed/256,
+					upperGreen/256,
+					upperBlue/256,
 				)
 			} else {
 				fmt.Printf(
 					"\x1b[48;2;%d;%d;%dm\x1b[38;2;%d;%d;%dm▄",
-					upper_red/256,
-					upper_green/256,
-					upper_blue/256,
-					lower_red/256,
-					lower_green/256,
-					lower_blue/256,
+					upperRed/256,
+					upperGreen/256,
+					upperBlue/256,
+					lowerRed/256,
+					lowerGreen/256,
+					lowerBlue/256,
 				)
 			}
 		}
@@ -51,14 +51,14 @@ func PrintImage(img image.Image, width uint, height uint) {
 }
 
 func main() {
-	height_int, width_int, _ := pty.Getsize(os.Stdout)
+	heightInt, widthInt, _ := pty.Getsize(os.Stdout)
 
 	var width uint
 	var height uint
 
 	// The three subtracted lines is to have room for command, file name and prompt after explosion
-	flag.UintVar(&width, "w", uint(width_int), "Maximum width of output in number of columns")
-	flag.UintVar(&height, "h", uint((height_int-3)*2), "Maximum height of output in number of half lines")
+	flag.UintVar(&width, "w", uint(widthInt), "Maximum width of output in number of columns")
+	flag.UintVar(&height, "h", uint((heightInt-3)*2), "Maximum height of output in number of half lines")
 	flag.Parse()
 	flag.Usage = func() {
 		fmt.Fprintf(os.Stderr, "Usage: %s [options] [file ...]\n\n", os.Args[0])
@@ -93,13 +93,13 @@ func main() {
 			}
 		}
 
-		source_image, _, err := image.Decode(file)
+		sourceImage, _, err := image.Decode(file)
 		file.Close()
 		if err != nil {
 			fmt.Fprintln(os.Stderr, "Error:", err)
 			continue
 		}
 
-		PrintImage(source_image, width, height)
+		PrintImage(sourceImage, width, height)
 	}
 }
