@@ -17,7 +17,7 @@ import (
 	_ "golang.org/x/image/tiff"
 )
 
-func PrintImage(img image.Image, width uint, height uint) {
+func printImage(img image.Image, width uint, height uint) {
 	resized := resize.Thumbnail(width, height, img, resize.NearestNeighbor)
 	bounds := resized.Bounds()
 
@@ -101,6 +101,6 @@ func main() {
 			continue
 		}
 
-		PrintImage(sourceImage, width, height)
+		printImage(sourceImage, width, height)
 	}
 }
