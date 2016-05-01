@@ -95,7 +95,7 @@ func main() {
 		}
 
 		sourceImage, _, err := image.Decode(file)
-		file.Close()
+		_ = file.Close()
 		if err != nil {
 			fmt.Fprintln(os.Stderr, "Error:", err)
 			continue
