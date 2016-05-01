@@ -62,7 +62,8 @@ func main() {
 	flag.Parse()
 	flag.Usage = func() {
 		fmt.Fprintf(os.Stderr, "Usage: %s [options] [file ...]\n\n", os.Args[0])
-		fmt.Fprintln(os.Stderr, "  Specify \"-\" to read from stdin.\n")
+		fmt.Fprintln(os.Stderr, "  Specify \"-\" to read from stdin.")
+		fmt.Fprintln(os.Stderr)
 		fmt.Fprintln(os.Stderr, "Options:")
 		flag.PrintDefaults()
 	}
