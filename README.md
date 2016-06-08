@@ -8,10 +8,10 @@ That's also where the name comes from, as this is more of an explosion of colors
 ## Usage
 
 ```
-$ explosion
-Usage: explosion [options] [file ...]
+$ explosion --help
+Usage: explosion [options] [file | - ...]
 
-  Specify "-" to read from stdin.
+  Specify "-" or just noting to read from stdin.
 
 Options:
   -h uint

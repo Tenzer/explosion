@@ -60,8 +60,8 @@ func main() {
 	flag.UintVar(&width, "w", uint(widthInt), "Maximum width of output in number of columns")
 	flag.UintVar(&height, "h", uint((heightInt-3)*2), "Maximum height of output in number of half lines")
 	flag.Usage = func() {
-		fmt.Fprintf(os.Stderr, "Usage: %s [options] [file ...]\n\n", os.Args[0])
-		fmt.Fprintln(os.Stderr, "  Specify \"-\" to read from stdin.")
+		fmt.Fprintf(os.Stderr, "Usage: %s [options] [file | - ...]\n\n", os.Args[0])
+		fmt.Fprintln(os.Stderr, "  Specify \"-\" or just noting to read from stdin.")
 		fmt.Fprintln(os.Stderr)
 		fmt.Fprintln(os.Stderr, "Options:")
 		flag.PrintDefaults()
@@ -70,37 +70,42 @@ func main() {
 
 	filenames := flag.Args()
 	if len(filenames) == 0 {
-		flag.Usage()
-		os.Exit(1)
-	}
-
-	for i, filename := range filenames {
-		if i > 0 {
-			fmt.Println()
-		}
-
-		var file *os.File
-		var err error
-
-		if filename == "-" {
-			fmt.Println("stdin:")
-			file = os.Stdin
+		fmt.Println("stdin:")
+		sourceImage, _, err := image.Decode(os.Stdin)
+		if err != nil {
+			fmt.Fprintln(os.Stderr, "Error:", err)
 		} else {
-			fmt.Printf("%s:\n", filename)
-			file, err = os.Open(filename)
+			printImage(sourceImage, width, height)
+		}
+	} else {
+		for i, filename := range filenames {
+			if i > 0 {
+				fmt.Println()
+			}
+
+			var file *os.File
+			var err error
+
+			if filename == "-" {
+				fmt.Println("stdin:")
+				file = os.Stdin
+			} else {
+				fmt.Printf("%s:\n", filename)
+				file, err = os.Open(filename)
+				if err != nil {
+					fmt.Fprintln(os.Stderr, "Error:", err)
+					continue
+				}
+			}
+
+			sourceImage, _, err := image.Decode(file)
+			_ = file.Close()
 			if err != nil {
 				fmt.Fprintln(os.Stderr, "Error:", err)
 				continue
 			}
-		}
 
-		sourceImage, _, err := image.Decode(file)
-		_ = file.Close()
-		if err != nil {
-			fmt.Fprintln(os.Stderr, "Error:", err)
-			continue
+			printImage(sourceImage, width, height)
 		}
-
-		printImage(sourceImage, width, height)
 	}
 }
