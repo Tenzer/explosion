@@ -59,7 +59,6 @@ func main() {
 	// The three subtracted lines is to have room for command, file name and prompt after explosion
 	flag.UintVar(&width, "w", uint(widthInt), "Maximum width of output in number of columns")
 	flag.UintVar(&height, "h", uint((heightInt-3)*2), "Maximum height of output in number of half lines")
-	flag.Parse()
 	flag.Usage = func() {
 		fmt.Fprintf(os.Stderr, "Usage: %s [options] [file ...]\n\n", os.Args[0])
 		fmt.Fprintln(os.Stderr, "  Specify \"-\" to read from stdin.")
@@ -67,6 +66,7 @@ func main() {
 		fmt.Fprintln(os.Stderr, "Options:")
 		flag.PrintDefaults()
 	}
+	flag.Parse()
 
 	filenames := flag.Args()
 	if len(filenames) == 0 {
