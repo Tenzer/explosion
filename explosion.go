@@ -61,7 +61,7 @@ func main() {
 	flag.UintVar(&height, "h", uint((heightInt-3)*2), "Maximum height of output in number of half lines")
 	flag.Usage = func() {
 		fmt.Fprintf(os.Stderr, "Usage: %s [options] [file | - ...]\n\n", os.Args[0])
-		fmt.Fprintln(os.Stderr, "  Specify \"-\" or just noting to read from stdin.")
+		fmt.Fprintln(os.Stderr, "  Specify \"-\" or just nothing to read from stdin.")
 		fmt.Fprintln(os.Stderr)
 		fmt.Fprintln(os.Stderr, "Options:")
 		flag.PrintDefaults()

@@ -11,7 +11,7 @@ That's also where the name comes from, as this is more of an explosion of colors
 $ explosion --help
 Usage: explosion [options] [file | - ...]
 
-  Specify "-" or just noting to read from stdin.
+  Specify "-" or just nothing to read from stdin.
 
 Options:
   -h uint
