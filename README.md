@@ -41,6 +41,10 @@ and you will get the `explosion` executable inside `$GOPATH/bin`.
 
 ## Change log
 
+### 1.1.1 - 2018-10-22
+* Read from standard input when no input file is provided.
+* Vendored dependencies.
+
 ### 1.1.0 - 2015-10-21
 * Fix bug where the outputted RGB values was on a scale from 0-65535 instead of 0-255 which doesn't work everywhere.
 * Attempt to decrease output amount if the two colors within the same character is identical.
