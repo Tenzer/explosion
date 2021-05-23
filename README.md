@@ -41,6 +41,10 @@ and you will get the `explosion` executable inside `$GOPATH/bin`.
 
 ## Change log
 
+### 1.1.2 - 2021-05-23
+* Switch dependencies to use go modules
+* Update all dependencies
+
 ### 1.1.1 - 2018-10-22
 * Read from standard input when no input file is provided.
 * Vendored dependencies.
